@@ -1,0 +1,5 @@
+dbHost: 10.105.21.141
+dbPort: 3306
+dbDatabase: monitor
+dbUser: root	
+dbPwd: Sulei0516

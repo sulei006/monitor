@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>第一个 ECharts 实例</title>
+    <!-- 引入 echarts.js -->
+    <script src="./echarts-5.2.0/dist/echarts.js"></script>
+    <script src="./echarts-5.2.0/line.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+   // var chart = echarts.init(dom, 'dark');
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'),'line');
+
+    // 指定图表的配置项和数据
+   var option = {
+       backgroundColor: '#FBFBFB',
+       tooltip : {
+           trigger: 'axis'
+       },
+       legend: {
+           data:['input','output']
+       },
+
+       calculable : true,
+
+
+       xAxis : [
+           {
+               axisLabel:{
+                   rotate: 30,
+                   interval:0
+               },
+               axisLine:{
+                   lineStyle :{
+                       color: '#CECECE'
+                   }
+               },
+               type : 'category',
+               boundaryGap : false,
+               data : function (){
+                   var list = [];
+                   for (var i = 10; i <= 18; i++) {
+                       if(i<= 12){
+                           list.push('2016-'+i + '-01');
+                       }else{
+                           list.push('2017-'+(i-12) + '-01');
+                       }
+                   }
+                   return list;
+               }()
+           }
+       ],
+       yAxis : [
+           {
+
+               type : 'value',
+               axisLine:{
+                   lineStyle :{
+                       color: '#CECECE'
+                   }
+               }
+           }
+       ],
+       series : [
+           {
+               name:'input',
+               type:'line',
+               symbol:'none',
+               smooth: 0.2,
+               color:['#66AEDE'],
+               data:[800, 300, 500, 800, 300, 600,500,600]
+           },
+           {
+               name:'output',
+               type:'line',
+               symbol:'none',
+               smooth: 0.2,
+               color:['#90EC7D'],
+               data:[600, 300, 400, 200, 300, 300,200,400]
+           }
+       ]
+   };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>
